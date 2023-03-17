@@ -1,0 +1,60 @@
+/* My own css code */
+
+.container {
+    border: 1px black solid;
+    box-shadow: 2px 2px 10px #888888;
+    border-radius: 10px;
+    padding: 20px 20px;
+    margin: 20px auto;
+    height: auto; 
+}
+
+#title {
+    font: 25px Arial;
+    color: dodgerblue;
+    text-align: center;
+    margin-bottom: 10px; 
+}
+
+#btnController {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#salesControl {
+    margin: 10px 0;
+}
+
+.btnSalesEdit {
+    text-align: right;
+    padding: 0;
+}
+
+#saleTitle {
+    font: 25px Arial;
+    font-weight: bold;
+    color: #4b4e4e;
+    text-align: center;
+}
+
+#saleInfoTitle {
+    font: 25px Arial;
+    font-weight: bold;
+    color: #4b4e4e;
+    text-align: center;
+}
+
+#dialog {
+    display: none;
+}
+
+#saleInfoControl {
+    margin: 10px 0;    
+}
+
+#footer {
+    text-align: center;
+    font: 14px Arial;
+    color: #403f3f;
+    margin: 10px 0; 
+} 

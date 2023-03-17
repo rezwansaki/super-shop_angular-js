@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Supershop by AngularJS v.1.0</title>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="jquery-1.11.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- AngularJS --> 
+    <script src="angular.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
+    <!-- My won script and css file --> 
+    <link rel="stylesheet" href="style.css">
+    <script src="myScript.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  
+    <body ng-controller="myController">
+   
+      <div class="container">
+         
+         
+          <!-- Header -->
+          <div class="row"> 
+              <div class="col-sm-12">
+                  <div id="title">SUPERSHOP BY ANGULARJS</div>
+              </div>
+          </div>
+          
+          
+          
+          <!-- Buttons to controll everything -->
+          <div class="row" id="btnController">
+              <div class="col-sm-12">
+                  <div class="dropdown">
+                      <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+                         Main Menu 
+                          <span class="caret"></span>
+                       </button>
+                      <ul class="dropdown-menu">
+                          <li><a href="#" ng-click="selPage('salePage')">Sales</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#" ng-click="selPage('saleInfo')">Sales Information</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#" ng-click="selPage('productInfo')">Product Information</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#" ng-click="selPage('aboutPage')">About</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <!-- /Buttons to controll everything -->
+          
+          
+          
+          <!-- Middle Part : When button press then this part will be changed -->
+          <div class="row">
+             
+             
+             
+              <div class="col-sm-12" id="middleContainer"> <!-- Change will be happen in here -->
+
+                    <!-- Start -->
+                    <div>
+                    
+                        <!-- =========================================================== -->
+                        <!-- About Page -->
+                        <!-- =========================================================== -->
+                        <div id="aboutPage">
+                            <h1>This is About Page !!</h1>
+                        </div>
+                        <!-- =========================================================== -->
+                        <!-- /About Page -->
+                        <!-- =========================================================== -->
+                        
+                        
+                    
+                        <!-- =========================================================== -->
+                        <!-- Product Information : All Products database -->
+                        <!-- =========================================================== -->
+                        <div id="productInfo">
+                            <div id="saleInfoTitle">
+                                Product Information
+                            </div>
+
+                            <!-- Search Box for Product Information -->
+                            <div class="row" id="productInfoControl">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="usr">Sarch By Product ID :</label>
+                                        <input type="text" class="form-control" ng-model="srchProductInfo.itemid">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="usr">Sarch By Product :</label>
+                                        <input type="text" class="form-control" ng-model="srchProductInfo.itemname">
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <!-- --> 
+                                </div>
+                            </div>
+                            <!-- //Search Box for Product Information -->
+
+                            <!-- Product table -->
+                            <div class="pre-scrollable" id="productInfoTable"> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Item ID</th>
+                                            <th>Item Name</th>
+                                            <th>Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="productInfo in products | filter: srchProductInfo | orderBy:'itemid'">
+                                            <td> {{ productInfo.itemid }} </td>
+                                            <td> {{ productInfo.itemname | uppercase }} </td>
+                                            <td> {{ productInfo.itemrate | number : 2 }} </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div> 
+                            <!-- /product table -->
+                            <!-- =========================================================== -->
+                            <!-- Product Page -->
+                            <!-- =========================================================== -->
+                        </div>
+                        <!-- =========================================================== -->
+                        <!-- /Product Information : All Products database -->
+                        <!-- =========================================================== -->
+                        
+                    
+                        <!-- =========================================================== -->
+                        <!-- Sales Information : All sales database -->
+                        <!-- =========================================================== -->
+                        <div id="saleInfo">
+                           <div id="saleInfoTitle">
+                               Sales Information
+                           </div>
+                            
+                            <!-- Search Box for Sales Information -->
+                            <div class="row" id="saleInfoControl">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="usr">Sarch By Sales ID :</label>
+                                        <input type="text" class="form-control" id="srchSaleInfo" ng-model="srchSalesInfo.sid">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="usr">Sarch By Item Name :</label>
+                                        <input type="text" class="form-control" id="srchSaleInfo" ng-model="srchSalesInfo.item">
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <br> 
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="getTotalSales()">Total Sale</button>
+                                </div>
+                            </div>
+                            <!-- //Search Box for Sales Information -->
+
+                            <!-- Sales table after sales every item -->
+                            <div class="pre-scrollable" id="saleInfoTable"> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Sales Id</th>
+                                            <th>Item Name</th>
+                                            <th>Rate</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="saleInfo in salesAll | filter: srchSalesInfo | orderBy:'sid'">
+                                            <td> {{ saleInfo.sid }} </td>
+                                            <td> {{ saleInfo.item | uppercase }} </td>
+                                            <td> {{ saleInfo.rate }} </td>
+                                            <td> {{ saleInfo.quantity }} </td>
+                                            <td> {{ saleInfo.price }} </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div> 
+                            <!-- /Sales table after sales every item -->
+                            <!-- =========================================================== -->
+                            <!-- Sales Page : When customer want to buy something -->
+                            <!-- =========================================================== -->
+                        </div>
+                        <!-- =========================================================== -->
+                        <!-- /Sales Information : All sales database -->
+                        <!-- =========================================================== -->
+                                             
+                    
+                        <!-- =========================================================== -->
+                        <!-- Sales Page : When customer want to buy something -->
+                        <!-- =========================================================== -->
+                        <div id="salePage">
+                            <div id="saleTitle">
+                                Sales Entry 
+                            </div>
+                            <div id="salesControl">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="newSale()">New Sale</button>
+                                    <button type="button" class="btn btn-primary btn-sm" ng-click="getHelp('salePage');" >Help</button>
+                                </div>
+                            </div>
+
+                            <!-- Sales table after sales every item -->
+                            <div class="pre-scrollable" id="salesTable"> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Sales Id</th>
+                                            <th>Item Name</th>
+                                            <th>Rate</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th class="btnSalesEdit">Edit/Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="sale in sales">
+                                            <td> {{ sale.sid }} </td>
+                                            <td> {{ sale.item }} </td>
+                                            <td> {{ sale.rate }} </td>
+                                            <td> {{ sale.quantity }} </td>
+                                            <td> {{ sale.price }} </td>
+                                            <td class="btnSalesEdit">
+                                                <button type="button" class="btn btn-info" ng-click="selectEdit(sale.sid)">Edit</button> 
+                                                <button type="button" class="btn btn-info" ng-click="del(sale.sid)">Delete</button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                    
+                                </table>
+                            </div> 
+                            <!-- /Sales table after sales every item -->
+                            
+                            <!-- Print the sales table for a customer -->
+                            <div class="pre-scrollable hidden" id="salesTablePrint"> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>SID</th>
+                                            <th>Item</th>
+                                            <th>Rate</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="sale in sales">
+                                            <td> {{ sale.sid }} </td>
+                                            <td> {{ sale.item }} </td>
+                                            <td> {{ sale.rate }} </td>
+                                            <td> {{ sale.quantity }} </td>
+                                            <td> {{ sale.price }} </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <td>{{ totalPrice }}</td>
+                            </div> 
+                            <!-- /Print the sales table for a customer -->
+
+                            <!-- Sales entry will be in here -->
+                            <div id="salesControl"> 
+                                <form role="form">
+                                    <div class="form-group">
+                                        <div class="col-xs-1">
+                                            <label for="ex1">Sales Id</label>
+                                            <input class="form-control" ng-model="sid" ng-disabled="true" id="sid" type="text">
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label for="ex2">Item Name</label>
+                                            <select ng-model="selectedItem" class="form-control selectpicker" ng-change="getRate()" id="sitem">
+                                                <option ng-repeat="product in products"> 
+                                                    {{ product.itemname }} 
+                                                </option>
+                                            </select> 
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label for="ex3">Rate</label>
+                                            <input class="form-control" ng-model="rate" ng-disabled="true" id="srate" type="text">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <label for="ex3">Quantity</label>
+                                            <input class="form-control" ng-model="quantity" ng-keyup="getPrice()" ng-keypress="myFunct($event)" id="squantity" type="text">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="ex3">Price</label>
+                                            <input class="form-control sprice" ng-model="price" ng-disabled="true" id="sprice" type="text">
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="row">
+                                                <label for="ex3">&nbsp;</label>
+                                                <!-- Add and Save Button -->
+                                                <div class="col-xs-12">
+                                                    <button type="button" id="btnAdd" class="btn btn-primary" ng-click="addSales()">Add</button>
+                                                    <button type="button" id="btnSave" class="btn btn-primary" ng-click="edit();">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form> 
+                            </div>
+                            <!-- /Sales entry will be in here -->
+                            <!-- =========================================================== -->
+                            <!-- Sales Page : When customer want to buy something -->
+                            <!-- =========================================================== -->
+                        </div>
+                        <!-- =========================================================== -->
+                        <!-- /Sales Page : When customer want to buy something -->
+                        <!-- =========================================================== -->
+                      
+                        
+                    </div>
+                    <!-- /End -->
+                    
+                 
+              </div> <!-- /Change will be happen in here -->
+              
+              
+              
+          </div>
+          <!-- /Middle Part : When button press then this part will be changed -->
+          
+          
+          
+          
+      </div>
+      
+      
+      <!-- Footer -->
+      <div id="footer">
+          <div class="col-sm-12">Developed by Alin 2016.</div>
+      </div>
+      <!-- /Footer -->
+
+  </body>
+  
+  
+</html>
